@@ -38,3 +38,7 @@ crawler/*.db
 # Misc
 *.zip
 .vite-temp/
+
+# Claude session files
+claude-memory/
+checkpoints/
