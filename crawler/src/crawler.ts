@@ -4,6 +4,7 @@ import { VoidStorage, createVoid } from './storage.js';
 import { UrlQueue } from './queue.js';
 import { Fetcher } from './fetcher.js';
 import { RateLimiter } from './utils/rateLimit.js';
+import { RobotsChecker } from './utils/robots.js';
 import { normalizeUrl, extractDomain, isSameDomain } from './utils/normalizer.js';
 import { ScreenshotCapture } from './screenshot.js';
 import type { CrawlerOptions, CrawlerStats } from './types.js';
@@ -15,6 +16,7 @@ export interface CrawlerEvents {
   onError?: (url: string, error: string) => void;
   onProgress?: (stats: CrawlerStats) => void;
   onComplete?: (stats: CrawlerStats) => void;
+  onBlocked?: (url: string, reason: string) => void;
 }
 
 export class VoidCrawler {
@@ -22,6 +24,7 @@ export class VoidCrawler {
   private queue: UrlQueue;
   private fetcher: Fetcher;
   private rateLimiter: RateLimiter;
+  private robotsChecker: RobotsChecker;
   private screenshotCapture: ScreenshotCapture | null = null;
   private options: CrawlerOptions;
   private stats: CrawlerStats;
@@ -40,6 +43,7 @@ export class VoidCrawler {
     this.queue = new UrlQueue();
     this.fetcher = new Fetcher(this.options);
     this.rateLimiter = new RateLimiter(this.options.rateLimit);
+    this.robotsChecker = new RobotsChecker(this.options.userAgent);
     this.stats = this.initStats();
     
     // Initialize screenshot capture if enabled
@@ -112,6 +116,22 @@ export class VoidCrawler {
     const domain = extractDomain(url);
 
     try {
+      // Check robots.txt if enabled
+      if (this.options.respectRobotsTxt) {
+        const allowed = await this.robotsChecker.isAllowed(url);
+        if (!allowed) {
+          this.events.onBlocked?.(url, 'Blocked by robots.txt');
+          this.queue.complete(url);
+          return;
+        }
+
+        // Check for crawl-delay in robots.txt
+        const robotsDelay = await this.robotsChecker.getCrawlDelay(domain);
+        if (robotsDelay && robotsDelay > this.options.rateLimit) {
+          this.rateLimiter.setDelay(robotsDelay);
+        }
+      }
+
       // Rate limit per domain
       await this.rateLimiter.wait(domain);
 
