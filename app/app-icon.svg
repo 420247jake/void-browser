@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <defs>
+    <radialGradient id="bg" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" style="stop-color:#1a1a2e"/>
+      <stop offset="100%" style="stop-color:#0a0a14"/>
+    </radialGradient>
+    <radialGradient id="glow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" style="stop-color:#4fc3f7"/>
+      <stop offset="70%" style="stop-color:#4fc3f7;stop-opacity:0.3"/>
+      <stop offset="100%" style="stop-color:#4fc3f7;stop-opacity:0"/>
+    </radialGradient>
+  </defs>
+  
+  <!-- Background -->
+  <rect width="512" height="512" fill="url(#bg)"/>
+  
+  <!-- Central node glow -->
+  <circle cx="256" cy="256" r="120" fill="url(#glow)" opacity="0.5"/>
+  
+  <!-- Connection lines -->
+  <g stroke="#4fc3f7" stroke-width="2" opacity="0.6">
+    <line x1="256" y1="256" x2="120" y2="150"/>
+    <line x1="256" y1="256" x2="390" y2="140"/>
+    <line x1="256" y1="256" x2="400" y2="320"/>
+    <line x1="256" y1="256" x2="140" y2="380"/>
+    <line x1="120" y1="150" x2="390" y2="140"/>
+    <line x1="390" y1="140" x2="400" y2="320"/>
+    <line x1="400" y1="320" x2="140" y2="380"/>
+  </g>
+  
+  <!-- Outer nodes -->
+  <circle cx="120" cy="150" r="20" fill="#4fc3f7"/>
+  <circle cx="390" cy="140" r="18" fill="#4fc3f7"/>
+  <circle cx="400" cy="320" r="22" fill="#4fc3f7"/>
+  <circle cx="140" cy="380" r="16" fill="#4fc3f7"/>
+  
+  <!-- Central node -->
+  <circle cx="256" cy="256" r="45" fill="#4fc3f7"/>
+  <circle cx="256" cy="256" r="35" fill="#0a0a1a"/>
+  <circle cx="256" cy="256" r="25" fill="#4fc3f7"/>
+</svg>

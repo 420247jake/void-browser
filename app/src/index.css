@@ -1,0 +1,15 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --void-blue: #0a0a2e;
+  --void-glow: #4fc3f7;
+  --void-accent: #6366f1;
+}
+
+body {
+  font-family: system-ui, -apple-system, sans-serif;
+  background: var(--void-blue);
+  color: #fff;
+}

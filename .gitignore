@@ -1,0 +1,40 @@
+# Dependencies
+node_modules/
+app/node_modules/
+
+# Build outputs
+dist/
+app/dist/
+target/
+app/src-tauri/target/
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+npm-debug.log*
+
+# Environment
+.env
+.env.local
+.env.*.local
+
+# Tauri
+app/src-tauri/target/
+
+# Crawler temp
+crawler/node_modules/
+crawler/screenshots/
+crawler/*.db
+
+# Misc
+*.zip
+.vite-temp/
