@@ -64,9 +64,9 @@ const DEFAULT_DISPLAY: DisplaySettings = {
 };
 
 // Thresholds
-const LARGE_GRAPH_THRESHOLD = 100; // Use worker for layout
-const INSTANCING_THRESHOLD = 50;  // Use instancing for rendering
-const FRUSTUM_CULLING_THRESHOLD = 30; // Enable frustum culling
+const LARGE_GRAPH_THRESHOLD = 500; // Use worker for layout
+const INSTANCING_THRESHOLD = 500;  // Use instancing for rendering (raised to preserve preview cards)
+const FRUSTUM_CULLING_THRESHOLD = 100; // Enable frustum culling
 
 export function VoidSceneOptimized({ 
   nodes, 
