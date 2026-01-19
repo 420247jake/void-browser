@@ -3,6 +3,8 @@ import { Stars } from "@react-three/drei";
 import { EffectComposer, Bloom } from "@react-three/postprocessing";
 import { Suspense, useState, useCallback, useEffect, useRef } from "react";
 import { invoke } from "@tauri-apps/api/core";
+import { listen } from "@tauri-apps/api/event";
+import { getCurrentWindow } from "@tauri-apps/api/window";
 import { VoidScene } from "./components/VoidSceneOptimized";
 import { FlyControls } from "./components/FlyControls";
 import { PerformanceOverlay } from "./components/PerformanceOverlay";
@@ -47,6 +49,7 @@ const DEFAULT_KEYBIND_SETTINGS: KeybindSettings = {
   addUrl: "N",
   crawl: "C",
   import: "I",
+  export: "Shift+E",
   gallery: "G",
   screenshot: "F2",
   toggleHelp: "H",
@@ -54,17 +57,24 @@ const DEFAULT_KEYBIND_SETTINGS: KeybindSettings = {
 
 // Helper to check if a key matches a keybind
 function matchesKeybind(e: KeyboardEvent, keybind: string): boolean {
+  // Handle Shift+ prefix
+  if (keybind.startsWith("Shift+")) {
+    if (!e.shiftKey) return false;
+    const key = keybind.slice(6); // Remove "Shift+" prefix
+    return e.key.toUpperCase() === key.toUpperCase();
+  }
+  
   if (keybind.startsWith("F") && keybind.length <= 3) {
-    return e.code === keybind;
+    return e.code === keybind && !e.shiftKey;
   }
   if (keybind === "`") {
-    return e.code === "Backquote";
+    return e.code === "Backquote" && !e.shiftKey;
   }
   if (keybind.length === 1 && /[A-Z]/i.test(keybind)) {
-    return e.key.toUpperCase() === keybind.toUpperCase();
+    return e.key.toUpperCase() === keybind.toUpperCase() && !e.shiftKey;
   }
   if (keybind.length === 1 && /[0-9]/.test(keybind)) {
-    return e.key === keybind;
+    return e.key === keybind && !e.shiftKey;
   }
   return false;
 }
@@ -159,8 +169,49 @@ function App() {
     invoke<string>("get_current_session").then(setCurrentSession).catch(console.error);
   }, []);
 
-  // Check if any modal is open
+  // Check if any modal is open (defined early so it can be used in effects)
   const anyModalOpen = showGallery || showImport || showExport || showMerge || showBrokenLinks || showSitemapImport || showSettings || showCrawl || showUrlBar || showSearch || showStats || contextMenu.isOpen;
+
+  // Listen for site window closed event and re-capture mouse
+  useEffect(() => {
+    const unlisten = listen("site-window-closed", () => {
+      // Small delay to ensure the main window has focus
+      setTimeout(() => {
+        const canvas = document.querySelector('canvas');
+        if (canvas && !anyModalOpen) {
+          canvas.requestPointerLock();
+        }
+      }, 150);
+    });
+    
+    return () => {
+      unlisten.then(fn => fn());
+    };
+  }, [anyModalOpen]);
+
+  // Auto-capture mouse when main window gains focus (after returning from site window)
+  useEffect(() => {
+    const handleWindowFocus = async () => {
+      // Check if this is the main window and no modal is open
+      const currentWindow = await getCurrentWindow();
+      if (currentWindow.label === 'main' && !anyModalOpen) {
+        // Small delay to ensure focus transition is complete
+        setTimeout(() => {
+          const canvas = document.querySelector('canvas');
+          if (canvas && !document.pointerLockElement) {
+            canvas.requestPointerLock();
+          }
+        }, 100);
+      }
+    };
+    
+    // Listen to Tauri window focus event
+    const unlisten = listen("tauri://focus", handleWindowFocus);
+    
+    return () => {
+      unlisten.then(fn => fn());
+    };
+  }, [anyModalOpen]);
 
 
   // Handle mouse lock/unlock when modals open/close
@@ -431,8 +482,8 @@ function App() {
       if (matchesKeybind(e, keybindSettings.crawl)) {
         setShowCrawl(true);
       }
-      // E key for Export
-      if (e.key.toUpperCase() === "E" && !e.ctrlKey && !e.metaKey && !e.altKey) {
+      // Export keybind
+      if (matchesKeybind(e, keybindSettings.export)) {
         setShowExport(true);
       }
       // M key for Merge Sessions

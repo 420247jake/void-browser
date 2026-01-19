@@ -39,6 +39,7 @@ export interface KeybindSettings {
   addUrl: string;
   crawl: string;
   import: string;
+  export: string;
   gallery: string;
   screenshot: string;
   toggleHelp: string;
@@ -241,6 +242,7 @@ export function SettingsPanel({
     addUrl: { label: "Add URL", desc: "Add new URL manually" },
     crawl: { label: "Crawl", desc: "Start crawling a website" },
     import: { label: "Import", desc: "Import crawler database" },
+    export: { label: "Export", desc: "Export session data" },
     gallery: { label: "Gallery", desc: "Open screenshot gallery" },
     screenshot: { label: "Screenshot", desc: "Take a screenshot" },
     toggleHelp: { label: "Toggle Help", desc: "Show/hide controls overlay" },

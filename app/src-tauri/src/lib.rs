@@ -1,6 +1,6 @@
 // Learn more about Tauri commands at https://tauri.app/develop/calling-rust/
 use serde::{Deserialize, Serialize};
-use tauri::{Manager, WebviewUrl, WebviewWindowBuilder};
+use tauri::{Manager, WebviewUrl, WebviewWindowBuilder, Emitter};
 use std::fs;
 use std::path::PathBuf;
 use std::collections::{HashMap, HashSet};
@@ -53,7 +53,7 @@ async fn open_site(app: tauri::AppHandle, url: String, title: String) -> Result<
         return Ok(());
     }
     
-    WebviewWindowBuilder::new(
+    let window = WebviewWindowBuilder::new(
         &app,
         &label,
         WebviewUrl::External(url.parse().map_err(|e: url::ParseError| e.to_string())?),
@@ -63,6 +63,17 @@ async fn open_site(app: tauri::AppHandle, url: String, title: String) -> Result<
     .center()
     .build()
     .map_err(|e| e.to_string())?;
+    
+    // Listen for window close and emit event to main window
+    let app_handle = app.clone();
+    window.on_window_event(move |event| {
+        if let tauri::WindowEvent::CloseRequested { .. } = event {
+            // Emit event to main window that site window was closed
+            if let Some(main_window) = app_handle.get_webview_window("main") {
+                let _ = main_window.emit("site-window-closed", ());
+            }
+        }
+    });
     
     Ok(())
 }
