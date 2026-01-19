@@ -48,7 +48,7 @@ A 3D spatial browser where websites become glowing nodes in a neural network you
 
 ```bash
 # Clone the repo
-git clone https://github.com/yourusername/void-browser.git
+git clone https://github.com/420247jake/void-browser.git
 cd void-browser
 
 # Install app dependencies
@@ -100,12 +100,12 @@ Then import the generated `.db` file into the app.
 - [x] Web crawler
 - [x] Auto-crawl system
 - [x] Session management
-- [ ] Search & navigation
-- [ ] Domain clustering
-- [ ] Force-directed layout
-- [ ] Stats dashboard
-- [ ] Performance optimization
-- [ ] Windows/Mac installers
+- [x] Search & navigation
+- [x] Domain clustering
+- [x] Force-directed layout
+- [x] Stats dashboard
+- [x] Performance optimization
+- [x] Windows/Mac installers
 - [ ] Web demo
 
 ## 📄 License
@@ -114,9 +114,9 @@ MIT License - see [LICENSE](LICENSE) for details.
 
 ## 🙏 Credits
 
-Built by Jake Terrell
+Built by 420247jake
 - Website: [jacobterrell.dev](https://jacobterrell.dev)
-- GitHub: [@yourusername](https://github.com/yourusername)
+- GitHub: [@420247jake](https://github.com/420247jake)
 
 ---
 
