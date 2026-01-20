@@ -143,5 +143,5 @@ cd app/src-tauri && cargo license
 
 ---
 
-*Last updated: January 2025*  
+*Last updated: January 2026*  
 *Generated for transparency. Because apparently some people need receipts.*
