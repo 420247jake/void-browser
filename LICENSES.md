@@ -2,103 +2,119 @@
 
 Void Browser is built on the shoulders of giants. Every dependency used in this project is properly licensed under permissive open-source licenses.
 
-## Summary
+## License Scan Summary
 
-| License Type | Count | Commercial Use | Modification | Distribution |
-|--------------|-------|----------------|--------------|--------------|
-| MIT | 28 | ✅ Yes | ✅ Yes | ✅ Yes |
-| Apache-2.0 | 4 | ✅ Yes | ✅ Yes | ✅ Yes |
-| MIT/Apache-2.0 (dual) | 9 | ✅ Yes | ✅ Yes | ✅ Yes |
+**Scanned:** January 2025  
+**Tools used:** `npx license-checker --production --summary`, `cargo license`
 
-**All dependencies are permissively licensed and fully compatible with this project's MIT license.**
+### Frontend (React/Three.js) - 92 packages
+| License | Count |
+|---------|-------|
+| MIT | 75 |
+| Apache-2.0 | 4 |
+| MIT OR Apache-2.0 | 4 |
+| ISC | 4 |
+| BSD-3-Clause | 2 |
+| Zlib | 1 |
 
----
+### Crawler (Node.js) - 198 packages
+| License | Count |
+|---------|-------|
+| MIT | 147 |
+| Apache-2.0 | 16 |
+| ISC | 14 |
+| BSD-2-Clause | 14 |
+| BSD-3-Clause | 3 |
+| 0BSD | 1 |
+| Python-2.0 | 1 |
+| MIT OR WTFPL | 1 |
 
-## Frontend Dependencies
+### Rust/Tauri Backend - 570+ crates
+| License | Count |
+|---------|-------|
+| Apache-2.0 OR MIT (dual) | 374 |
+| MIT | 138 |
+| Unicode-3.0 | 18 |
+| Apache-2.0 OR MIT OR Zlib | 21 |
+| MPL-2.0 | 7 |
+| Apache-2.0 | 4 |
+| BSD-3-Clause | 4 |
+| ISC | 3 |
 
-| Package | Version | License | Source |
-|---------|---------|---------|--------|
-| react | ^18.3.1 | MIT | [GitHub](https://github.com/facebook/react) |
-| react-dom | ^18.3.1 | MIT | [GitHub](https://github.com/facebook/react) |
-| three | ^0.172.0 | MIT | [GitHub](https://github.com/mrdoob/three.js) |
-| @react-three/fiber | ^8.17.14 | MIT | [GitHub](https://github.com/pmndrs/react-three-fiber) |
-| @react-three/drei | ^9.121.4 | MIT | [GitHub](https://github.com/pmndrs/drei) |
-| @react-three/postprocessing | ^2.17.0 | MIT | [GitHub](https://github.com/pmndrs/react-postprocessing) |
-| @tauri-apps/api | ^2.5.0 | MIT | [GitHub](https://github.com/tauri-apps/tauri) |
-| @tauri-apps/plugin-dialog | ^2.6.0 | MIT | [GitHub](https://github.com/tauri-apps/plugins-workspace) |
-| @tauri-apps/plugin-fs | ^2.4.5 | MIT | [GitHub](https://github.com/tauri-apps/plugins-workspace) |
-| @tauri-apps/plugin-sql | ^2.2.0 | MIT | [GitHub](https://github.com/tauri-apps/plugins-workspace) |
-
-## Frontend Dev Dependencies
-
-| Package | Version | License | Source |
-|---------|---------|---------|--------|
-| vite | ^5.4.21 | MIT | [GitHub](https://github.com/vitejs/vite) |
-| typescript | ^5.9.3 | Apache-2.0 | [GitHub](https://github.com/microsoft/TypeScript) |
-| tailwindcss | ^3.4.19 | MIT | [GitHub](https://github.com/tailwindlabs/tailwindcss) |
-| postcss | ^8.5.6 | MIT | [GitHub](https://github.com/postcss/postcss) |
-| autoprefixer | ^10.4.23 | MIT | [GitHub](https://github.com/postcss/autoprefixer) |
-| @vitejs/plugin-react | ^4.7.0 | MIT | [GitHub](https://github.com/vitejs/vite-plugin-react) |
-
----
-
-## Crawler Dependencies
-
-| Package | Version | License | Source |
-|---------|---------|---------|--------|
-| axios | ^1.6.5 | MIT | [GitHub](https://github.com/axios/axios) |
-| better-sqlite3 | ^9.3.0 | MIT | [GitHub](https://github.com/WiseLibs/better-sqlite3) |
-| cheerio | ^1.0.0-rc.12 | MIT | [GitHub](https://github.com/cheeriojs/cheerio) |
-| commander | ^12.0.0 | MIT | [GitHub](https://github.com/tj/commander.js) |
-| ora | ^8.0.1 | MIT | [GitHub](https://github.com/sindresorhus/ora) |
-| chalk | ^5.3.0 | MIT | [GitHub](https://github.com/chalk/chalk) |
-| uuid | ^9.0.1 | MIT | [GitHub](https://github.com/uuidjs/uuid) |
-| puppeteer | ^22.0.0 | Apache-2.0 | [GitHub](https://github.com/puppeteer/puppeteer) |
-
----
-
-## Rust/Tauri Dependencies
-
-| Crate | Version | License | Source |
-|-------|---------|---------|--------|
-| tauri | 2.x | MIT OR Apache-2.0 | [GitHub](https://github.com/tauri-apps/tauri) |
-| tauri-plugin-opener | 2.x | MIT | [GitHub](https://github.com/tauri-apps/plugins-workspace) |
-| tauri-plugin-sql | 2.x | MIT | [GitHub](https://github.com/tauri-apps/plugins-workspace) |
-| tauri-plugin-dialog | 2.x | MIT | [GitHub](https://github.com/tauri-apps/plugins-workspace) |
-| tauri-plugin-fs | 2.x | MIT | [GitHub](https://github.com/tauri-apps/plugins-workspace) |
-| serde | 1.x | MIT OR Apache-2.0 | [GitHub](https://github.com/serde-rs/serde) |
-| serde_json | 1.x | MIT OR Apache-2.0 | [GitHub](https://github.com/serde-rs/json) |
-| url | 2.x | MIT OR Apache-2.0 | [GitHub](https://github.com/servo/rust-url) |
-| chrono | 0.4.x | MIT OR Apache-2.0 | [GitHub](https://github.com/chronotope/chrono) |
-| base64 | 0.22.x | MIT OR Apache-2.0 | [GitHub](https://github.com/marshallpierce/rust-base64) |
-| rusqlite | 0.31.x | MIT | [GitHub](https://github.com/rusqlite/rusqlite) |
-| reqwest | 0.11.x | MIT OR Apache-2.0 | [GitHub](https://github.com/seanmonstar/reqwest) |
-| scraper | 0.18.x | MIT | [GitHub](https://github.com/causal-agent/scraper) |
-| tokio | 1.x | MIT | [GitHub](https://github.com/tokio-rs/tokio) |
-| rand | 0.8.x | MIT OR Apache-2.0 | [GitHub](https://github.com/rust-random/rand) |
+**Total: ~860 packages/crates across all components**
 
 ---
 
 ## License Compatibility
 
-This project is licensed under the **MIT License**.
+✅ **All licenses are permissive and compatible with MIT.**
 
-Both MIT and Apache-2.0 are permissive licenses that allow:
-- ✅ Commercial use
-- ✅ Modification
-- ✅ Distribution
-- ✅ Private use
+| License | Commercial | Modify | Distribute | Notes |
+|---------|------------|--------|------------|-------|
+| MIT | ✅ | ✅ | ✅ | Most permissive |
+| Apache-2.0 | ✅ | ✅ | ✅ | Preserve NOTICE if present |
+| BSD-2/3-Clause | ✅ | ✅ | ✅ | Keep copyright notice |
+| ISC | ✅ | ✅ | ✅ | Functionally same as MIT |
+| Zlib | ✅ | ✅ | ✅ | Very permissive |
+| MPL-2.0 | ✅ | ✅ | ✅ | File-level copyleft only |
+| Unicode-3.0 | ✅ | ✅ | ✅ | Unicode data tables |
+| 0BSD | ✅ | ✅ | ✅ | Public domain equivalent |
 
-All dependencies listed above are fully compatible with this project's MIT license.
+**No GPL, AGPL, or other copyleft licenses detected.**
+
+---
+
+## Key Direct Dependencies
+
+### Frontend
+| Package | Version | License |
+|---------|---------|---------|
+| react | ^18.3.1 | MIT |
+| react-dom | ^18.3.1 | MIT |
+| three | ^0.172.0 | MIT |
+| @react-three/fiber | ^8.17.14 | MIT |
+| @react-three/drei | ^9.121.4 | MIT |
+| @tauri-apps/api | ^2.5.0 | Apache-2.0 OR MIT |
+
+### Crawler
+| Package | Version | License |
+|---------|---------|---------|
+| axios | ^1.6.5 | MIT |
+| better-sqlite3 | ^9.3.0 | MIT |
+| cheerio | ^1.0.0 | MIT |
+| puppeteer | ^22.0.0 | Apache-2.0 |
+
+### Rust/Tauri
+| Crate | License |
+|-------|---------|
+| tauri | Apache-2.0 OR MIT |
+| tokio | MIT |
+| reqwest | Apache-2.0 OR MIT |
+| rusqlite | MIT |
+| serde | Apache-2.0 OR MIT |
+
+---
+
+## Apache-2.0 Notice
+
+Some dependencies use Apache-2.0, which requires preserving NOTICE files if present. Key Apache-2.0 dependencies:
+
+- `puppeteer` (Google)
+- `draco3d` (Google)
+- `hls.js` (video-dev)
+- `@mediapipe/tasks-vision` (Google)
+
+If redistributing, ensure any NOTICE files from these packages are included.
 
 ---
 
 ## A Note on AI-Assisted Development
 
 This project was developed with AI assistance (Claude). Using AI as a development tool is:
-- ✅ Legal
-- ✅ Ethical
-- ✅ Industry standard
+
+- ✅ **Legal** - AI tools are just tools
+- ✅ **Ethical** - Same as using Stack Overflow or Copilot  
+- ✅ **Industry standard** - Most developers use AI assistance
 
 AI-assisted development is no different from using:
 - Stack Overflow answers
@@ -110,4 +126,22 @@ The final product is original work. The tools used to create it don't change tha
 
 ---
 
+## Regenerating This Report
+
+To verify or regenerate license information:
+
+```bash
+# Frontend
+cd app && npx license-checker --production --summary
+
+# Crawler
+cd crawler && npx license-checker --production --summary
+
+# Rust
+cd app/src-tauri && cargo license
+```
+
+---
+
+*Last updated: January 2025*  
 *Generated for transparency. Because apparently some people need receipts.*

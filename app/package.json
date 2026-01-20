@@ -2,11 +2,20 @@
   "name": "void-browser",
   "version": "1.1.0",
   "description": "3D spatial browser - fly through the web",
+  "license": "MIT",
+  "author": "Jacob Terrell",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/420247jake/void-browser"
+  },
   "type": "module",
   "scripts": {
     "dev": "npx vite",
+    "dev:web": "npx vite --config vite.config.web.ts",
     "build": "npx tsc && npx vite build",
+    "build:web": "npx vite build --config vite.config.web.ts",
     "preview": "npx vite preview",
+    "preview:web": "npx vite preview --config vite.config.web.ts",
     "tauri": "tauri"
   },
   "dependencies": {
