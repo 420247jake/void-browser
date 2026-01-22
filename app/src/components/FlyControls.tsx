@@ -6,9 +6,10 @@ interface FlyControlsProps {
   speed?: number;
   rollSpeed?: number;
   enabled?: boolean;
+  onLockChange?: (locked: boolean) => void;
 }
 
-export function FlyControls({ speed = 15, rollSpeed = 2, enabled = true }: FlyControlsProps) {
+export function FlyControls({ speed = 15, rollSpeed = 2, enabled = true, onLockChange }: FlyControlsProps) {
   const { camera, gl } = useThree();
   
   const moveState = useRef({
@@ -92,12 +93,18 @@ export function FlyControls({ speed = 15, rollSpeed = 2, enabled = true }: FlyCo
 
     const onClick = () => {
       if (!isPointerLocked.current && enabledRef.current) {
-        domElement.requestPointerLock();
+        // Prevent rapid re-requests
+        if (document.pointerLockElement) return;
+        domElement.requestPointerLock().catch(() => {
+          // Silently ignore pointer lock errors (user cancelled, etc.)
+        });
       }
     };
 
     const onPointerLockChange = () => {
-      isPointerLocked.current = document.pointerLockElement === domElement;
+      const locked = document.pointerLockElement === domElement;
+      isPointerLocked.current = locked;
+      onLockChange?.(locked);
     };
 
     const onPointerLockError = () => {

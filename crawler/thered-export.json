@@ -1,0 +1,26 @@
+{
+  "version": "1.0.0",
+  "exportedAt": "2026-01-19T19:07:31.603Z",
+  "nodes": [
+    {
+      "id": "f03d9190-e93c-45ae-be81-0978a9833485",
+      "url": "https://thered.sh",
+      "normalizedUrl": "thered.sh/",
+      "domain": "thered.sh",
+      "title": "TheRed.SH",
+      "description": null,
+      "favicon": "https://thered.sh/favicon.svg",
+      "thumbnail": null,
+      "positionX": 8.817742834374943,
+      "positionY": -5.275268011541141,
+      "positionZ": -6.141097566459579,
+      "statusCode": 200,
+      "isAlive": true,
+      "depth": 0,
+      "crawledAt": "2026-01-19T19:07:20.093Z",
+      "lastVisited": null,
+      "createdAt": "2026-01-19 19:07:20"
+    }
+  ],
+  "edges": []
+}

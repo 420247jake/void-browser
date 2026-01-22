@@ -6,6 +6,8 @@ A 3D spatial browser where websites become glowing nodes in a neural network you
 
 ![Void Browser](https://img.shields.io/badge/status-beta-blue) ![Tauri](https://img.shields.io/badge/tauri-2.0-orange) ![License](https://img.shields.io/badge/license-MIT-green)
 
+![Void Browser Screenshot](screenshots/preview.png)
+
 ## ✨ Features
 
 - **3D Web Visualization** - Websites rendered as glowing orbs connected by neon lines
